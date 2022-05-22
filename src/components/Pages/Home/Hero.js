@@ -4,17 +4,17 @@ const Hero = () => {
   return (
     <div>
       <div class="hero  bg-base-200 pt-16 pb-9">
-        <div class="hero-content flex-col gap-20 lg:flex-row">
+        <div class="hero-content flex-col md:gap-20 lg:flex-row">
           <img
             src={heroImage}
-            class="lg:max-w-lg max-w-sm rounded-lg"
+            class="lg:max-w-lg sm:max-w-sm rounded-lg"
             alt="toolsimage"
           />
 
           <div>
-            <h1 class="text-5xl font-bold capitalize leading-normal">
+            <h1 class="text-4xl lg:text-5xl font-bold capitalize leading-normal">
               Get all your carpentry tools in{" "}
-              <span className="bg-gray-800 text-slate-200 px-3 py-1 italic">
+              <span className="bg-secondary text-slate-200 px-3 py-1 italic">
                 bulk amount
               </span>
             </h1>
