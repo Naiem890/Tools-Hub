@@ -4,7 +4,7 @@ const Review = () => {
   return (
     <article className="border px-7 py-5 bg-slate-50">
       <div className="flex gap-3">
-        <div class="flex items-center mb-4 space-x-4">
+        <div class="flex items-center mb-4 space-x-6">
           <div class="avatar">
             <div class="w-14 ring ring-offset-2 ring-green-400 rounded-full">
               <img src="https://api.lorem.space/image/face?hash=28212" alt="" />
