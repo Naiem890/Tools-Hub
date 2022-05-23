@@ -1,4 +1,5 @@
 import React from "react";
+import Cta from "./Cta";
 import Features from "./Features";
 import Hero from "./Hero";
 import Reviews from "./Reviews";
@@ -13,6 +14,7 @@ const Home = () => {
       <Tools></Tools>
       <Stats></Stats>
       <Reviews></Reviews>
+      <Cta></Cta>
     </div>
   );
 };

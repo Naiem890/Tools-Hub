@@ -14,20 +14,20 @@ const Footer = () => {
         <hr className="mb-3 border-gray-200 sm:mx-auto dark:border-gray-700 lg:mb-6" />
 
         <footer className="bg-white rounded-lg   dark:bg-gray-800">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between  flex-wrap gap-3">
             <Link to="/" className="flex items-center mb-4 sm:mb-0">
               <img src={logo} className="h-8" alt="tools hub Logo" />
             </Link>
             <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
               © {new Date().getFullYear()} Tools-Hub. All Rights Reserved.
             </span>
-            <ul className="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
+            <ul className="flex flex-wrap items-center  text-sm text-gray-500  dark:text-gray-400">
               {footerLink.map((footerLink) => {
                 return (
                   <li>
                     <a
                       href={footerLink.linkRoute}
-                      className="mr-4 hover:underline md:mr-6 "
+                      className="mr-4 hover:underline md:mr-6 font-semibold"
                     >
                       {footerLink.linkText}
                     </a>
