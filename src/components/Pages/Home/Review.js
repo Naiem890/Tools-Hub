@@ -2,7 +2,7 @@ import React from "react";
 
 const Review = () => {
   return (
-    <article className="border px-7 py-5 bg-slate-50">
+    <article className="border px-7 py-5 bg-slate-50 hover:shadow-lg hover:border-transparent transition-all cursor-pointer">
       <div className="flex gap-3">
         <div class="flex items-center mb-4 space-x-6">
           <div class="avatar">

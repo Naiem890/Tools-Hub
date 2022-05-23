@@ -3,7 +3,7 @@ import Tool from "./Tool";
 
 const Tools = () => {
   return (
-    <div className="container 2xl:px-32 px-4  mx-auto mt-20">
+    <div className="container 2xl:px-32 px-4  mx-auto mt-20 ">
       <h2 className="text-4xl text-center">
         Our <span className=" border-b-4 pb-2 border-red-500">Popular</span>{" "}
         Tools
