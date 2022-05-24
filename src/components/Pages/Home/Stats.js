@@ -6,7 +6,7 @@ import {
 } from "@heroicons/react/outline";
 const Stats = () => {
   return (
-    <div className="bg-slate-100 py-10 mt-20">
+    <div className="bg-white py-10 mt-20">
       <div className="container mx-auto 2xl:px-32 px-4 ">
         {/* <h2 className="text-4xl text-center">
           We're <span className="border-b-4 pb-2 border-info">Trusted</span> By

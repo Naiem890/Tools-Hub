@@ -4,7 +4,7 @@ const Blogs = () => {
   return (
     <div className="container 2xl:px-20 py-3  mx-auto mt-10">
       <h2 className="text-center text-2xl mb-10">Some Question Answer</h2>
-      <div className="shadow-sm rounded-lg border p-4 mb-8">
+      <div className="shadow-sm bg-white rounded-lg border p-4 mb-8">
         <h2 className="mb-4 text-xl font-semibold text-slate-500">
           <span className="text-primary  mr-3">Question:</span>
           Difference between javascript and nodejs?
@@ -22,7 +22,7 @@ const Blogs = () => {
           use the google chrome v8 engine which makes it very fast.
         </p>
       </div>
-      <div className="shadow-sm rounded-lg border p-4 mb-8">
+      <div className="shadow-sm bg-white rounded-lg border p-4 mb-8">
         <h2 className="mb-4 text-xl font-semibold text-slate-500">
           <span className="text-primary  mr-3">Question:</span>
           Difference between javascript and nodejs?
@@ -40,7 +40,7 @@ const Blogs = () => {
           use the google chrome v8 engine which makes it very fast.
         </p>
       </div>
-      <div className="shadow-sm rounded-lg border p-4 mb-8">
+      <div className="shadow-sm bg-white rounded-lg border p-4 mb-8">
         <h2 className="mb-4 text-xl font-semibold text-slate-500">
           <span className="text-primary  mr-3">Question:</span>
           Difference between javascript and nodejs?

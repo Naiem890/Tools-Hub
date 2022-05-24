@@ -4,7 +4,7 @@ import hammerImage from "./../../../assets/image/hammer.png";
 
 const Tool = () => {
   return (
-    <div className="card card-compact card-bordered hover:shadow-lg hover:border-transparent transition-all cursor-pointer">
+    <div className="card bg-white card-compact card-bordered hover:shadow-lg hover:border-transparent transition-all cursor-pointer">
       <figure className="bg-base-200 min-h-72 px-8 py-6">
         <img src={hammerImage} className="object-cover" alt="Shoes" />
       </figure>

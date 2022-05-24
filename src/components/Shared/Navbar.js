@@ -9,7 +9,7 @@ const Navbar = () => {
     { linkText: "About Me", linkRoute: "/portfolio" },
   ];
   return (
-    <div>
+    <div className="bg-white sticky top-0 z-50">
       <div className="navbar  container 2xl:px-20 py-3  mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
