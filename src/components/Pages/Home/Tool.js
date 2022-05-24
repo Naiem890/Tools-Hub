@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import hammerImage from "./../../../assets/image/hammer.png";
 
 const Tool = () => {
@@ -13,7 +14,9 @@ const Tool = () => {
           If a dog chews shoes whose shoes does he choose?
         </p>
         <div className="card-actions mt-2 justify-between">
-          <button className="btn btn-primary text-white">Buy Now</button>
+          <Link to="/order" className="btn btn-primary text-white">
+            Buy Now
+          </Link>
           <span className="text-3xl">$123</span>
         </div>
       </div>

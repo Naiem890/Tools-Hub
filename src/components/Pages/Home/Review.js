@@ -4,15 +4,15 @@ const Review = () => {
   return (
     <article className="border px-7 py-5 bg-slate-50 hover:shadow-lg hover:border-transparent transition-all cursor-pointer">
       <div className="flex gap-3">
-        <div class="flex items-center mb-4 space-x-6">
+        <div class="flex items-center mb-4 space-x-4">
           <div class="avatar">
             <div class="w-14 ring ring-offset-2 ring-green-400 rounded-full">
               <img src="https://api.lorem.space/image/face?hash=28212" alt="" />
             </div>
           </div>
-          <div class="space-y-1 font-medium dark:text-white">
+          <div class="space-y-1 font-medium ">
             <p>
-              <div className="flex items-center gap-2 justify-between ">
+              <div className="flex items-center gap-4 justify-between ">
                 <p>Jese Leos </p>
                 <div class="rating">
                   <svg class="mask mask-star-2 w-4 h-4 bg-green-500" />
@@ -24,7 +24,7 @@ const Review = () => {
               </div>
               <time
                 datetime="2014-08-16 19:00"
-                class="block text-sm text-gray-500 dark:text-gray-400"
+                class="block text-sm text-gray-500 "
               >
                 Joined on August 2014
               </time>
@@ -33,7 +33,7 @@ const Review = () => {
         </div>
       </div>
 
-      <p class="mb-2 font-light text-gray-500 dark:text-gray-400">
+      <p class="mb-2 font-light text-gray-500 ">
         This is my third Invicta Pro Diver. They are just fantastic value for
         money. This one arrived yesterday and the first thing I did was set the
         time
