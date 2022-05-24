@@ -4,7 +4,7 @@ import toolsImage from "./../../../assets/image/tools.png";
 
 const Cta = () => {
   return (
-    <div className="hero bg-[#3B4342]  pt-8 pb-8 md:pb-0 mt-20 text-white">
+    <div className="hero bg-[#3B4342]  pt-8 pb-8  mt-20 text-white">
       <div className="hero-content flex-col gap-8 md:gap-20 md:flex-row md:justify-evenly">
         <img
           src={toolsImage}

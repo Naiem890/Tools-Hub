@@ -1,7 +1,13 @@
 import React from "react";
 import logo from "./../../assets/image/logo.svg";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  const navLinks = [
+    { linkText: "Home", linkRoute: "/" },
+    { linkText: "Blogs", linkRoute: "/blogs" },
+    { linkText: "About Me", linkRoute: "/portfolio" },
+  ];
   return (
     <div>
       <div className="navbar  container 2xl:px-20 py-3  mx-auto">
@@ -27,75 +33,43 @@ const Navbar = () => {
               tabindex="0"
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li tabindex="0">
-                <a className="justify-between">
-                  Parent
-                  <svg
-                    className="fill-current"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-                  </svg>
-                </a>
-                <ul className="p-2">
+              {navLinks.map((navLink) => {
+                return (
                   <li>
-                    <a>Submenu 1</a>
+                    <Link to={navLink.linkRoute}>{navLink.linkText}</Link>
                   </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
+                );
+              })}
+              <Link to="" className="btn mt-2">
+                Login
+              </Link>
+              <Link to="" className="btn btn-outline mt-2">
+                Register
+              </Link>
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">
+          <Link to="" className="btn btn-ghost normal-case text-xl">
             <img src={logo} alt="tools-hub" />
-          </a>
+          </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li tabindex="0">
-              <a>
-                Parent
-                <svg
-                  className="fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-                </svg>
-              </a>
-              <ul className="p-2">
+            {navLinks.map((navLink) => {
+              return (
                 <li>
-                  <a>Submenu 1</a>
+                  <NavLink to={navLink.linkRoute}>{navLink.linkText}</NavLink>
                 </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+              );
+            })}
           </ul>
+          <Link to="/login" className="btn ml-4">
+            Login
+          </Link>
+          <Link to="/register" className="btn  btn-outline ml-4">
+            Register
+          </Link>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Get started</a>
-        </div>
+        {/* <div className="navbar-end"></div> */}
       </div>
     </div>
   );
