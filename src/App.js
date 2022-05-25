@@ -9,6 +9,7 @@ import Portfolio from "./components/Pages/Portfolio/Portfolio";
 import NotFound from "./components/Shared/NotFound";
 import Order from "./components/Pages/Order/Order";
 import Login from "./components/Pages/Login/Login";
+import Register from "./components/Pages/Login/Register";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/portfolio" element={<Portfolio></Portfolio>}></Route>
         <Route path="/order" element={<Order></Order>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="/register" element={<Register></Register>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
