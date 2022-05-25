@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logoImage from "./../../../assets/image/logo.svg";
 import SocialLogin from "./SocialLogin";
 import { useForm } from "react-hook-form";
@@ -13,9 +13,16 @@ const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
+  if (user) {
+    navigate(from, { replace: true });
+  }
+
   const handleLogin = (user) => {
     const { email, password } = user;
-    console.log(user);
     signInWithEmailAndPassword(email, password);
   };
 

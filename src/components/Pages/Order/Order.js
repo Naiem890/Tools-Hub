@@ -3,8 +3,8 @@ import toolIamge from "./../../../assets/image/hammer.png";
 import { QuestionMarkCircleIcon } from "@heroicons/react/solid";
 const Order = () => {
   return (
-    <div className="container 2xl:px-20 px-8 py-3  mx-auto mt-6">
-      <div className="border flex md:flex-row flex-col p-4 md:p-9 gap-6 lg:gap-10">
+    <div className="container 2xl:px-20 px-8 py-3  mx-auto my-6">
+      <div className="border bg-white flex md:flex-row flex-col p-4 md:p-9 gap-6 lg:gap-10">
         <div className="lg:w-1/3 w-full">
           <div className="">
             <img
@@ -44,7 +44,7 @@ const Order = () => {
                 <input
                   type="text"
                   placeholder="Type here"
-                  class="input input-bordered w-full"
+                  class="input input-bordered bg-slate-50 w-full"
                 />
               </div>
               <div class="form-control w-full">
@@ -54,7 +54,7 @@ const Order = () => {
                 <input
                   type="email"
                   placeholder="Type here"
-                  class="input input-bordered w-full"
+                  class="input input-bordered bg-slate-50 w-full"
                 />
               </div>
             </div>
@@ -64,9 +64,10 @@ const Order = () => {
                   <span class="label-text">Phone Number</span>
                 </label>
                 <input
-                  type="number"
+                  type="tel"
+                  pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                   placeholder="Type here"
-                  class="input input-bordered w-full"
+                  class="input input-bordered bg-slate-50 w-full"
                 />
               </div>
               <div class="form-control w-full">
@@ -76,7 +77,7 @@ const Order = () => {
                 <input
                   type="number"
                   placeholder="Type here"
-                  class="input input-bordered w-full"
+                  class="input input-bordered bg-slate-50 w-full"
                 />
               </div>
             </div>
@@ -87,7 +88,7 @@ const Order = () => {
                   <span class="label-text">Enter Delivery Address</span>
                 </label>
                 <textarea
-                  class="textarea textarea-bordered"
+                  class="textarea bg-slate-50 textarea-bordered"
                   placeholder="Example: 1382 Plainfield Avenue, Syracuse, New York"
                 ></textarea>
               </div>

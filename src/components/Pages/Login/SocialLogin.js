@@ -2,15 +2,23 @@ import React from "react";
 import auth from "../../../firebase.init";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import ButtonLoading from "../../Shared/ButtonLoading";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
-  const [signInWithGoogle, , loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
   if (loading) {
     return (
       <button class="btn mt-6 w-full text-black  bg-sky-100 border-none hover:bg-slate-200">
         <ButtonLoading></ButtonLoading>
       </button>
     );
+  }
+
+  if (user) {
+    navigate(from, { replace: true });
   }
 
   return (

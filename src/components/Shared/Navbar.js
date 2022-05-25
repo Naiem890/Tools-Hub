@@ -1,6 +1,9 @@
 import React from "react";
 import logo from "./../../assets/image/logo.svg";
 import { Link, NavLink } from "react-router-dom";
+import auth from "../../firebase.init";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { signOut } from "firebase/auth";
 
 const Navbar = () => {
   const navLinks = [
@@ -8,6 +11,9 @@ const Navbar = () => {
     { linkText: "Blogs", linkRoute: "/blogs" },
     { linkText: "About Me", linkRoute: "/portfolio" },
   ];
+
+  const [user] = useAuthState(auth);
+
   return (
     <div className="bg-white sticky top-0 z-50">
       <div className="navbar  container 2xl:px-20 py-3  mx-auto">
@@ -62,12 +68,25 @@ const Navbar = () => {
               );
             })}
           </ul>
-          <Link to="/login" className="btn ml-4">
-            Login
-          </Link>
-          <Link to="/register" className="btn  btn-outline ml-4">
-            Register
-          </Link>
+          {user ? (
+            <>
+              <button
+                onClick={() => signOut(auth)}
+                className="btn btn-outline btn-primary ml-4"
+              >
+                Sign out
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="btn ml-4">
+                Login
+              </Link>
+              <Link to="/register" className="btn  btn-outline ml-4">
+                Register
+              </Link>
+            </>
+          )}
         </div>
         {/* <div className="navbar-end"></div> */}
       </div>
