@@ -1,16 +1,17 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Blogs from "./components/Pages/Blogs/Blogs";
+import Blogs from "./Pages/Blogs/Blogs";
 
-import Home from "./components/Pages/Home/Home";
-import Footer from "./components/Shared/Footer";
-import Navbar from "./components/Shared/Navbar";
-import Portfolio from "./components/Pages/Portfolio/Portfolio";
-import NotFound from "./components/Shared/NotFound";
-import Order from "./components/Pages/Order/Order";
-import Login from "./components/Pages/Login/Login";
-import Register from "./components/Pages/Login/Register";
-import RequireAuth from "./components/Pages/Login/RequireAuth";
+import Home from "./Pages/Home/Home";
+import Footer from "./Pages/Shared/Footer";
+import Navbar from "./Pages/Shared/Navbar";
+import Portfolio from "./Pages/Portfolio/Portfolio";
+import NotFound from "./Pages/Shared/NotFound";
+import Order from "./Pages/Order/Order";
+import Login from "./Pages/Login/Login";
+import Register from "./Pages/Login/Register";
+import RequireAuth from "./Pages/Login/RequireAuth";
+import Profile from "./Pages/Profile/Profile";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         ></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
+        <Route path="/profile" element={<Profile></Profile>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>

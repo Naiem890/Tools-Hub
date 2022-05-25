@@ -1,7 +1,7 @@
 import React from "react";
-import auth from "../../../firebase.init";
+import auth from "../../firebase.init";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
-import ButtonLoading from "../../Shared/ButtonLoading";
+import ButtonLoading from "../Shared/ButtonLoading";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
@@ -18,7 +18,7 @@ const SocialLogin = () => {
   }
 
   if (user) {
-    navigate(from, { replace: true });
+    // navigate(from, { replace: true });
   }
 
   return (

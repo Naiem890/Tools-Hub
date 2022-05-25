@@ -1,6 +1,6 @@
 import { ArrowRightIcon, PhoneIcon } from "@heroicons/react/solid";
 import React from "react";
-import toolsImage from "./../../../assets/image/tools.png";
+import toolsImage from "./../../assets/image/tools.png";
 
 const Cta = () => {
   return (

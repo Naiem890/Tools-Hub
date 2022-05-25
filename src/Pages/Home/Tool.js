@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import hammerImage from "./../../../assets/image/hammer.png";
+import hammerImage from "./../../assets/image/hammer.png";
 
 const Tool = () => {
   return (

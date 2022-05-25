@@ -1,29 +1,30 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logoImage from "./../../../assets/image/logo.svg";
+import logoImage from "./../../assets/image/logo.svg";
 import SocialLogin from "./SocialLogin";
 import { useForm } from "react-hook-form";
-import auth from "../../../firebase.init";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import ButtonLoading from "../../Shared/ButtonLoading";
+import auth from "../../firebase.init";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import ButtonLoading from "../Shared/ButtonLoading";
 
-const Login = () => {
+const Register = () => {
   const { register, handleSubmit } = useForm();
 
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
 
   const navigate = useNavigate();
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
 
   if (user) {
-    navigate(from, { replace: true });
+    // navigate(from, { replace: true });
   }
 
-  const handleLogin = (user) => {
+  const handleRegister = (user) => {
     const { email, password } = user;
-    signInWithEmailAndPassword(email, password);
+    console.log(email, password);
+    createUserWithEmailAndPassword(email, password);
   };
 
   return (
@@ -37,8 +38,19 @@ const Login = () => {
         <div class="divider">OR</div>
         <form
           className="flex flex-col gap-2 mt-4"
-          onSubmit={handleSubmit(handleLogin)}
+          onSubmit={handleSubmit(handleRegister)}
         >
+          <div class="form-control w-full">
+            <label class="label">
+              <span class="label-text">Full Name</span>
+            </label>
+            <input
+              type="text"
+              {...register("name", { required: true })}
+              placeholder="enter name"
+              class="input input-bordered w-full"
+            />
+          </div>
           <div class="form-control w-full">
             <label class="label">
               <span class="label-text">Email Address</span>
@@ -63,21 +75,21 @@ const Login = () => {
           </div>
 
           {error ? (
-            <p className="text-sm text-primary">{error?.message}</p>
+            <p className=" text-sm text-primary">{error?.message}</p>
           ) : (
             ""
           )}
 
           <button type="submit" className="btn mt-3">
-            {loading ? <ButtonLoading></ButtonLoading> : "Login"}
+            {loading ? <ButtonLoading></ButtonLoading> : "Register"}
           </button>
 
-          <p className="mt-3 text-gray-400">Don't have an account?</p>
-          <Link to="/register">Create an account</Link>
+          <p className="mt-3 text-gray-400">Already have an account?</p>
+          <Link to="/login">Login Here</Link>
         </form>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;

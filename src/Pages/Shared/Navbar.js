@@ -9,7 +9,7 @@ const Navbar = () => {
   const navLinks = [
     { linkText: "Home", linkRoute: "/" },
     { linkText: "Blogs", linkRoute: "/blogs" },
-    { linkText: "About Me", linkRoute: "/portfolio" },
+    { linkText: "Portfolio", linkRoute: "/portfolio" },
   ];
 
   const [user] = useAuthState(auth);
@@ -70,12 +70,42 @@ const Navbar = () => {
           </ul>
           {user ? (
             <>
-              <button
-                onClick={() => signOut(auth)}
-                className="btn btn-outline btn-primary ml-4"
-              >
-                Sign out
-              </button>
+              <div class="dropdown dropdown-end">
+                <label tabindex="0" class="btn font-medium btn-ghost">
+                  <div>Dashboard</div>
+                  <svg
+                    class="fill-current translate-x-2"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                  </svg>
+                </label>
+                <ul
+                  tabindex="0"
+                  class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <Link to="/profile" class="justify-between">
+                      Profile
+                      <span class="badge">New</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <a>Settings</a>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => signOut(auth)}
+                      className="btn  btn-outline btn-primary mt-2"
+                    >
+                      Sign out
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </>
           ) : (
             <>
