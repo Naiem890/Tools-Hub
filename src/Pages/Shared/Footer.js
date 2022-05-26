@@ -22,9 +22,9 @@ const Footer = () => {
               © {new Date().getFullYear()} Tools-Hub. All Rights Reserved.
             </span>
             <ul className="flex flex-wrap items-center  text-sm text-gray-500  ">
-              {footerLink.map((footerLink) => {
+              {footerLink.map((footerLink, i) => {
                 return (
-                  <li>
+                  <li key={i}>
                     <Link
                       to={footerLink.linkRoute}
                       className="mr-4 hover:underline md:mr-6 font-semibold"

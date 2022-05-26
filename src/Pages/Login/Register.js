@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logoImage from "./../../assets/image/logo.svg";
 import SocialLogin from "./SocialLogin";
 import { useForm } from "react-hook-form";
 import auth from "../../firebase.init";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import ButtonLoading from "../Shared/ButtonLoading";
 
 const Register = () => {
@@ -13,18 +16,22 @@ const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
+  const [updateProfile, updating] = useUpdateProfile(auth);
+
   const navigate = useNavigate();
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
 
-  if (user) {
-    navigate(from, { replace: true });
-  }
+  useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+    }
+  }, [from, navigate, user]);
 
-  const handleRegister = (user) => {
-    const { email, password } = user;
-    console.log(email, password);
-    createUserWithEmailAndPassword(email, password);
+  const handleRegister = async (user) => {
+    const { fullName, email, password } = user;
+    await createUserWithEmailAndPassword(email, password);
+    await updateProfile({ displayName: fullName });
   };
 
   return (
@@ -35,42 +42,42 @@ const Register = () => {
 
         <SocialLogin></SocialLogin>
 
-        <div class="divider">OR</div>
+        <div className="divider">OR</div>
         <form
           className="flex flex-col gap-2 mt-4"
           onSubmit={handleSubmit(handleRegister)}
         >
-          <div class="form-control w-full">
-            <label class="label">
-              <span class="label-text">Full Name</span>
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">Full Name</span>
             </label>
             <input
               type="text"
-              {...register("name", { required: true })}
-              placeholder="enter name"
-              class="input input-bordered w-full"
+              {...register("fullName", { required: true })}
+              placeholder="enter full name"
+              className="input input-bordered w-full"
             />
           </div>
-          <div class="form-control w-full">
-            <label class="label">
-              <span class="label-text">Email Address</span>
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">Email Address</span>
             </label>
             <input
               type="email"
               {...register("email", { required: true })}
               placeholder="enter email"
-              class="input input-bordered w-full"
+              className="input input-bordered w-full"
             />
           </div>
-          <div class="form-control w-full">
-            <label class="label">
-              <span class="label-text">Password</span>
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">Password</span>
             </label>
             <input
               type="password"
               {...register("password", { required: true })}
               placeholder="enter password"
-              class="input input-bordered w-full"
+              className="input input-bordered w-full"
             />
           </div>
 
@@ -81,7 +88,7 @@ const Register = () => {
           )}
 
           <button type="submit" className="btn mt-3">
-            {loading ? <ButtonLoading></ButtonLoading> : "Register"}
+            {loading || updating ? <ButtonLoading></ButtonLoading> : "Register"}
           </button>
 
           <p className="mt-3 text-gray-400">Already have an account?</p>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logoImage from "./../../assets/image/logo.svg";
 import SocialLogin from "./SocialLogin";
@@ -17,13 +17,15 @@ const Login = () => {
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
 
-  if (user) {
-    navigate(from, { replace: true });
-  }
+  useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+    }
+  }, [from, navigate, user]);
 
-  const handleLogin = (user) => {
+  const handleLogin = async (user) => {
     const { email, password } = user;
-    signInWithEmailAndPassword(email, password);
+    await signInWithEmailAndPassword(email, password);
   };
 
   return (
@@ -34,31 +36,31 @@ const Login = () => {
 
         <SocialLogin></SocialLogin>
 
-        <div class="divider">OR</div>
+        <div className="divider">OR</div>
         <form
           className="flex flex-col gap-2 mt-4"
           onSubmit={handleSubmit(handleLogin)}
         >
-          <div class="form-control w-full">
-            <label class="label">
-              <span class="label-text">Email Address</span>
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">Email Address</span>
             </label>
             <input
               type="email"
               {...register("email", { required: true })}
               placeholder="enter email"
-              class="input input-bordered w-full"
+              className="input input-bordered w-full"
             />
           </div>
-          <div class="form-control w-full">
-            <label class="label">
-              <span class="label-text">Password</span>
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">Password</span>
             </label>
             <input
               type="password"
               {...register("password", { required: true })}
               placeholder="enter password"
-              class="input input-bordered w-full"
+              className="input input-bordered w-full"
             />
           </div>
 

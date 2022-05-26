@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import auth from "../../firebase.init";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import ButtonLoading from "../Shared/ButtonLoading";
@@ -9,27 +9,30 @@ const SocialLogin = () => {
   const navigate = useNavigate();
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
+
+  useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+    }
+  }, [from, navigate, user]);
+
   if (loading) {
     return (
-      <button class="btn mt-6 w-full text-black  bg-sky-100 border-none hover:bg-slate-200">
+      <button className="btn mt-6 w-full text-black  bg-sky-100 border-none hover:bg-slate-200">
         <ButtonLoading></ButtonLoading>
       </button>
     );
-  }
-
-  if (user) {
-    navigate(from, { replace: true });
   }
 
   return (
     <div className="mt-6">
       <button
         type="button"
-        class="btn w-full text-black  bg-sky-100 border-none hover:bg-slate-200"
+        className="btn w-full text-black  bg-sky-100 border-none hover:bg-slate-200"
         onClick={() => signInWithGoogle()}
       >
         <svg
-          class="w-4 h-4 mr-2 -ml-1"
+          className="w-4 h-4 mr-2 -ml-1"
           aria-hidden="true"
           focusable="false"
           data-prefix="fab"

@@ -26,20 +26,20 @@ const Cta = () => {
           </p>
 
           <div className="flex items-center mt-6 flex-wrap gap-4">
-            <div class="form-control ">
-              <label class="input-group">
+            <div className="form-control ">
+              <label className="input-group">
                 {/* <span className=" text-black">Email</span> */}
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  class="input input-bordered text-black"
+                  className="input input-bordered text-black"
                 />
                 <button type="submit" className="btn btn-success text-white">
                   <ArrowRightIcon className="w-5 h-5 inline-block "></ArrowRightIcon>
                 </button>
               </label>
             </div>
-            <div class="divider  md:divider-horizontal">OR</div>
+            <div className="divider  md:divider-horizontal">OR</div>
 
             <a href="tel:123-456-7890" className="btn btn-success  text-white">
               <PhoneIcon className="w-5 h-5 inline-block mr-3"></PhoneIcon>

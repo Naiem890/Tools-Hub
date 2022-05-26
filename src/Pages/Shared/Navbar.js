@@ -19,7 +19,7 @@ const Navbar = () => {
       <div className="navbar  container 2xl:px-20 py-3  mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
-            <label tabindex="0" className="btn btn-ghost lg:hidden">
+            <label tabIndex="0" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -28,20 +28,20 @@ const Navbar = () => {
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M4 6h16M4 12h8m-8 6h16"
                 />
               </svg>
             </label>
             <ul
-              tabindex="0"
+              tabIndex="0"
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              {navLinks.map((navLink) => {
+              {navLinks.map((navLink, i) => {
                 return (
-                  <li>
+                  <li key={i}>
                     <Link to={navLink.linkRoute}>{navLink.linkText}</Link>
                   </li>
                 );
@@ -60,9 +60,9 @@ const Navbar = () => {
         </div>
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
-            {navLinks.map((navLink) => {
+            {navLinks.map((navLink, i) => {
               return (
-                <li>
+                <li key={i}>
                   <NavLink to={navLink.linkRoute}>{navLink.linkText}</NavLink>
                 </li>
               );
@@ -70,11 +70,11 @@ const Navbar = () => {
           </ul>
           {user ? (
             <>
-              <div class="dropdown dropdown-end">
-                <label tabindex="0" class="btn font-medium btn-ghost">
+              <div className="dropdown dropdown-end">
+                <label tabIndex="0" className="btn font-medium btn-ghost">
                   <div>Dashboard</div>
                   <svg
-                    class="fill-current translate-x-2"
+                    className="fill-current translate-x-2"
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
                     height="20"
@@ -84,13 +84,13 @@ const Navbar = () => {
                   </svg>
                 </label>
                 <ul
-                  tabindex="0"
-                  class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                  tabIndex="0"
+                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
                 >
                   <li>
-                    <Link to="/profile" class="justify-between">
+                    <Link to="/profile" className="justify-between">
                       Profile
-                      <span class="badge">New</span>
+                      <span className="badge">New</span>
                     </Link>
                   </li>
                   <li>
