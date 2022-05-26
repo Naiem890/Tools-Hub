@@ -16,17 +16,17 @@ const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
-  const [updateProfile, updating] = useUpdateProfile(auth);
-
+  const [updateProfile, updating, error1] = useUpdateProfile(auth);
+  console.log(error1);
   const navigate = useNavigate();
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
-    if (user) {
+    if (user && !updating) {
       navigate(from, { replace: true });
     }
-  }, [from, navigate, user]);
+  }, [from, navigate, updating, user]);
 
   const handleRegister = async (user) => {
     const { fullName, email, password } = user;

@@ -4,6 +4,8 @@ import { Link, NavLink } from "react-router-dom";
 import auth from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
+import { CogIcon } from "@heroicons/react/outline";
+import Loading from "./Loading";
 
 const Navbar = () => {
   const navLinks = [
@@ -12,10 +14,15 @@ const Navbar = () => {
     { linkText: "Portfolio", linkRoute: "/portfolio" },
   ];
 
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
+  if (loading) {
+    return <Loading></Loading>;
+  }
+
+  console.log(user?.displayName?.split(" ")[0]);
 
   return (
-    <div className="bg-white sticky top-0 z-50">
+    <div className="bg-white sticky top-0 z-20">
       <div className="navbar  container 2xl:px-20 py-3  mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -73,21 +80,32 @@ const Navbar = () => {
           </div>
           {user ? (
             <>
-              <div className="dropdown dropdown-end">
-                <label tabIndex="0" className="btn font-medium btn-ghost">
-                  <p className="font-semibold">
-                    {user.displayName.split(" ")[0]}
-                  </p>
-                  <svg
-                    className="fill-current translate-x-2"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
+              <div className="dropdown dropdown-end  ">
+                <div className="flex">
+                  <label tabIndex="0" className="btn font-medium btn-ghost">
+                    <p className="font-semibold">
+                      {user?.displayName?.split(" ")[0]
+                        ? user?.displayName?.split(" ")[0]
+                        : "UserName"}
+                    </p>
+                    <svg
+                      className="fill-current translate-x-2"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                    </svg>
+                  </label>
+                  <label
+                    for="my-drawer-2"
+                    class="btn btn-outline btn-md  drawer-button  btn-circle lg:hidden flex "
                   >
-                    <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-                  </svg>
-                </label>
+                    <CogIcon className="h-8 w-8"></CogIcon>
+                  </label>
+                </div>
+
                 <ul
                   tabIndex="0"
                   className="menu menu-compact gap-2 dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
@@ -123,7 +141,6 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        {/* <div className="navbar-end"></div> */}
       </div>
     </div>
   );
