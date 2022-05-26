@@ -41,15 +41,12 @@ const Order = () => {
     axios
       .post("http://localhost:5000/order", { order })
       .then((res) => {
-        console.log();
         if (res.data.acknowledged) {
           toast.success(
             "Order Placed Successfully. Visit my order page for payment"
           );
           reset();
         }
-
-        return console.log(res.data.acknowledged);
       })
       .catch((err) => console.error(err));
   };

@@ -46,33 +46,38 @@ const Navbar = () => {
                   </li>
                 );
               })}
-              <Link to="" className="btn mt-2">
+              <Link to="/login" className="btn mt-2">
                 Login
               </Link>
-              <Link to="" className="btn btn-outline mt-2">
+              <Link to="/register" className="btn btn-outline mt-2">
                 Register
               </Link>
             </ul>
           </div>
           <Link to="" className="btn btn-ghost normal-case text-xl">
-            <img src={logo} alt="tools-hub" />
+            <img src={logo} className="md:-ml-0 -ml-8" alt="tools-hub" />
           </Link>
         </div>
-        <div className="navbar-end hidden lg:flex">
-          <ul className="menu menu-horizontal p-0">
-            {navLinks.map((navLink, i) => {
-              return (
-                <li key={i}>
-                  <NavLink to={navLink.linkRoute}>{navLink.linkText}</NavLink>
-                </li>
-              );
-            })}
-          </ul>
+
+        <div className="navbar-end  lg:flex">
+          <div className="hidden lg:flex">
+            <ul className="menu menu-horizontal p-0">
+              {navLinks.map((navLink, i) => {
+                return (
+                  <li key={i}>
+                    <NavLink to={navLink.linkRoute}>{navLink.linkText}</NavLink>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
           {user ? (
             <>
               <div className="dropdown dropdown-end">
                 <label tabIndex="0" className="btn font-medium btn-ghost">
-                  <div>Dashboard</div>
+                  <p className="font-semibold">
+                    {user.displayName.split(" ")[0]}
+                  </p>
                   <svg
                     className="fill-current translate-x-2"
                     xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +90,7 @@ const Navbar = () => {
                 </label>
                 <ul
                   tabIndex="0"
-                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                  className="menu menu-compact gap-2 dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
                 >
                   <li>
                     <Link to="/profile" className="justify-between">
@@ -94,12 +99,12 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                    <a>Settings</a>
+                    <Link to="/dashboard">Dashboard</Link>
                   </li>
                   <li>
                     <button
                       onClick={() => signOut(auth)}
-                      className="btn  btn-outline btn-primary mt-2"
+                      className="btn btn-md btn-outline btn-primary mt-2"
                     >
                       Sign out
                     </button>
@@ -108,14 +113,14 @@ const Navbar = () => {
               </div>
             </>
           ) : (
-            <>
+            <div className="hidden md:flex">
               <Link to="/login" className="btn ml-4">
                 Login
               </Link>
               <Link to="/register" className="btn  btn-outline ml-4">
                 Register
               </Link>
-            </>
+            </div>
           )}
         </div>
         {/* <div className="navbar-end"></div> */}
