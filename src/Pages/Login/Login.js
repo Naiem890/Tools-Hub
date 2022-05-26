@@ -24,7 +24,7 @@ const Login = () => {
     if (token) {
       navigate(from, { replace: true });
     }
-  }, [from, navigate, user]);
+  }, [from, navigate, token, user]);
 
   const handleLogin = async (user) => {
     const { email, password } = user;
