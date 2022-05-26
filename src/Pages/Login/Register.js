@@ -10,6 +10,9 @@ import {
 } from "react-firebase-hooks/auth";
 import ButtonLoading from "../Shared/ButtonLoading";
 
+import axios from "axios";
+import useToken from "../../hooks/useToken";
+
 const Register = () => {
   const { register, handleSubmit } = useForm();
 
@@ -22,16 +25,32 @@ const Register = () => {
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
 
+  const [token] = useToken(user);
+
   useEffect(() => {
-    if (user && !updating) {
+    if (token) {
+      /* axios
+        .post("http://localhost:5000/user", user)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        }); */
+
       navigate(from, { replace: true });
     }
-  }, [from, navigate, updating, user]);
+  }, [from, navigate, token, updating, user]);
 
   const handleRegister = async (user) => {
     const { fullName, email, password } = user;
     await createUserWithEmailAndPassword(email, password);
-    await updateProfile({ displayName: fullName });
+
+    await updateProfile({
+      displayName: fullName,
+      photoURL:
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    });
   };
 
   return (

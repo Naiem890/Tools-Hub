@@ -12,7 +12,6 @@ const Profile = () => {
             </label>
             <input
               type="email"
-              //   defaultValue={"Solaiman Islam Naiem"}
               value={"solaiman.naiem890@gmail.com"}
               disabled
               className="input input-bordered w-full"

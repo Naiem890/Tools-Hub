@@ -3,17 +3,26 @@ import { useQuery } from "react-query";
 import Loading from "../Shared/Loading";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const MyOrders = () => {
+  const [user, loading] = useAuthState(auth);
+
   const {
     isLoading,
     error,
     data: orders,
     refetch,
   } = useQuery(
-    "repoData",
+    "orderData",
     async () =>
-      await fetch("http://localhost:5000/orders").then((res) => res.json(), {
+      await fetch(`http://localhost:5000/orders/${user?.email}`, {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }).then((res) => res.json(), {
         enabled: false,
       })
   );
@@ -22,7 +31,7 @@ const MyOrders = () => {
     refetch();
   }, [orders, refetch]);
 
-  if (isLoading) return <Loading></Loading>;
+  if (isLoading || loading) return <Loading></Loading>;
 
   if (error) return "An error has occurred: " + error.message;
 
@@ -62,7 +71,7 @@ const MyOrders = () => {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order, i) => {
+            {orders?.map((order, i) => {
               return (
                 <tr className="h-14" key={order._id}>
                   <th className="text-center">{i + 1}</th>

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./../../assets/image/logo.svg";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
@@ -15,11 +15,19 @@ const Navbar = () => {
   ];
 
   const [user, loading] = useAuthState(auth);
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    if (user) {
+      setUserName(user?.displayName?.split(" ")[0]);
+    }
+  }, [user, user?.displayName]);
+
   if (loading) {
     return <Loading></Loading>;
   }
 
-  console.log(user?.displayName?.split(" ")[0]);
+  // console.log(user?.displayName?.split(" ")[0]);
 
   return (
     <div className="bg-white sticky top-0 z-20">
@@ -83,11 +91,7 @@ const Navbar = () => {
               <div className="dropdown dropdown-end  ">
                 <div className="flex">
                   <label tabIndex="0" className="btn font-medium btn-ghost">
-                    <p className="font-semibold">
-                      {user?.displayName?.split(" ")[0]
-                        ? user?.displayName?.split(" ")[0]
-                        : "UserName"}
-                    </p>
+                    <p className="font-semibold">{userName}</p>
                     <svg
                       className="fill-current translate-x-2"
                       xmlns="http://www.w3.org/2000/svg"
