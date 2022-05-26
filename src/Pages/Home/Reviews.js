@@ -1,7 +1,21 @@
 import React from "react";
+import { useQuery } from "react-query";
+import Loading from "../Shared/Loading";
 import Review from "./Review";
 
 const Reviews = () => {
+  const {
+    isLoading,
+    error,
+    data: reviews,
+  } = useQuery("repoData", () =>
+    fetch("http://localhost:5000/reviews").then((res) => res.json())
+  );
+
+  if (isLoading) return <Loading></Loading>;
+
+  if (error) return "An error has occurred: " + error.message;
+
   return (
     <div className="container mx-auto 2xl:px-32 px-4 mt-20">
       <h2 className="text-4xl text-center ">
@@ -13,9 +27,9 @@ const Reviews = () => {
       </h2>
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-16 md:gap-9 gap-4 mb-9">
-        <Review></Review>
-        <Review></Review>
-        <Review></Review>
+        {reviews.map((review) => {
+          return <Review key={review?._id} review={review}></Review>;
+        })}
       </div>
     </div>
   );

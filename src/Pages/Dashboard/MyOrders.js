@@ -1,10 +1,8 @@
-import { TrashIcon } from "@heroicons/react/outline";
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import Loading from "../Shared/Loading";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { async } from "@firebase/util";
 
 const MyOrders = () => {
   const {
@@ -45,19 +43,6 @@ const MyOrders = () => {
         })
         .catch((error) => console.error(error));
     }
-
-    /* fetch(`http://localhost:5000/order/${id}`, {
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-
-        if(data.)
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      }); */
   };
 
   return (
@@ -81,13 +66,13 @@ const MyOrders = () => {
               return (
                 <tr className="h-14" key={order._id}>
                   <th className="text-center">{i + 1}</th>
-                  <td>{order.userName}</td>
-                  <td>{order.tool.toolName}</td>
-                  <td>{order.orderQuantity}</td>
-                  <td>{order.totalBill}</td>
+                  <td>{order?.userName}</td>
+                  <td>{order?.tool?.toolName}</td>
+                  <td>{order?.orderQuantity}</td>
+                  <td>{order?.totalBill}</td>
                   <td></td>
                   <td
-                    onClick={() => handleDelete(order._id)}
+                    onClick={() => handleDelete(order?._id)}
                     className="text-center"
                   >
                     <button className="btn btn-outline btn-primary border-none btn-xs  bg-red-50 text-primary hover:text-white">
