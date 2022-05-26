@@ -1,9 +1,10 @@
 import { TrashIcon } from "@heroicons/react/outline";
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import Loading from "../Shared/Loading";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { async } from "@firebase/util";
 
 const MyOrders = () => {
   const {
@@ -11,9 +12,17 @@ const MyOrders = () => {
     error,
     data: orders,
     refetch,
-  } = useQuery("repoData", () =>
-    fetch("http://localhost:5000/orders").then((res) => res.json())
+  } = useQuery(
+    "repoData",
+    async () =>
+      await fetch("http://localhost:5000/orders").then((res) => res.json(), {
+        enabled: false,
+      })
   );
+
+  useEffect(() => {
+    refetch();
+  }, [orders, refetch]);
 
   if (isLoading) return <Loading></Loading>;
 
@@ -23,13 +32,14 @@ const MyOrders = () => {
     const confirm = window.confirm(
       "Are you sure you want to delete this order?"
     );
+
     if (confirm) {
       await axios
         .delete(`http://localhost:5000/order/${id}`)
-        .then((res) => {
-          refetch();
+        .then(async (res) => {
           if (res.data.acknowledged) {
             toast.success(`order ID: ${id} deleted`);
+            await refetch();
           }
           return console.log(res.data);
         })
@@ -75,13 +85,14 @@ const MyOrders = () => {
                   <td>{order.tool.toolName}</td>
                   <td>{order.orderQuantity}</td>
                   <td>{order.totalBill}</td>
-                  <td>button</td>
+                  <td></td>
                   <td
-                    className="text-center"
                     onClick={() => handleDelete(order._id)}
+                    className="text-center"
                   >
-                    <button className="btn btn-outline btn-primary border-none  btn-circle bg-red-50 text-primary hover:text-white">
-                      <TrashIcon className="h-5 w-5 "></TrashIcon>
+                    <button className="btn btn-outline btn-primary border-none btn-xs  bg-red-50 text-primary hover:text-white">
+                      {/* <TrashIcon className="h-5 w-5 "></TrashIcon> */}
+                      cancel
                     </button>
                   </td>
                 </tr>
