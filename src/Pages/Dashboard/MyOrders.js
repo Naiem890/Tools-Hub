@@ -39,9 +39,9 @@ const MyOrders = () => {
       )
   );
 
-  useEffect(() => {
+  /* useEffect(() => {
     refetch();
-  }, [orders, refetch]);
+  }, [orders, refetch]); */
 
   if (isLoading || loading) return <Loading></Loading>;
 
@@ -60,8 +60,9 @@ const MyOrders = () => {
         .then(async (res) => {
           if (res.data.acknowledged) {
             toast.success(`order ID: ${id} deleted`);
-            await refetch();
           }
+          refetch();
+          // refetch();
           return console.log(res.data);
         })
         .catch((error) => console.error(error));

@@ -3,11 +3,15 @@ import { useEffect, useState } from "react";
 
 const useToken = (user) => {
   const [token, setToken] = useState("");
-
+  console.log(user);
   useEffect(() => {
     const email = user?.user?.email;
-    const currentUser = { email: email };
-
+    const currentUser = {
+      email: email,
+      displayName: user?.user?.displayName,
+      photoURL: user?.user?.photoURL,
+    };
+    console.log(currentUser);
     console.log(email, currentUser);
     if (email) {
       axios
@@ -19,7 +23,7 @@ const useToken = (user) => {
         })
         .then((error) => console.error(error));
     }
-  }, [user?.user?.email]);
+  }, [user?.displayName, user?.user?.email]);
 
   return [token];
 };

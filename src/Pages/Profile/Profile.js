@@ -103,7 +103,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="my-10 sm:mx-5 sm:px-5">
+    <div className="my-10 sm:mr-5 sm:px-5">
       <div className="shadow bg-white p-5">
         <h2 className="text-xl font-medium ">Profile Information</h2>
         <form action="" className="mt-4" onSubmit={handleSubmit(handleUpdate)}>

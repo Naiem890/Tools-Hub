@@ -1,6 +1,6 @@
 import { TemplateIcon } from "@heroicons/react/outline";
 import { CogIcon } from "@heroicons/react/solid";
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
@@ -17,13 +17,16 @@ const Dashboard = () => {
         <label for="my-drawer-2" class="drawer-overlay"></label>
         <ul class="menu gap-3 p-4 overflow-y-auto w-80 bg-base-100 text-base -content ">
           <li className="border bg-slate-100">
-            <Link to="/dashboard/profile">My Profile</Link>
-          </li>
-          <li className="border bg-slate-100">
             <Link to="/dashboard">My Order</Link>
           </li>
           <li className="border bg-slate-100">
             <Link to="/dashboard/add-review">Add Review</Link>
+          </li>
+          <li className="border bg-slate-100">
+            <Link to="/dashboard/profile">My Profile</Link>
+          </li>
+          <li className="border bg-slate-100">
+            <Link to="/dashboard/all-users">All User</Link>
           </li>
         </ul>
       </div>

@@ -5,6 +5,7 @@ import SocialLogin from "./SocialLogin";
 import { useForm } from "react-hook-form";
 import auth from "../../firebase.init";
 import {
+  useAuthState,
   useCreateUserWithEmailAndPassword,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
@@ -12,6 +13,7 @@ import ButtonLoading from "../Shared/ButtonLoading";
 
 import axios from "axios";
 import useToken from "../../hooks/useToken";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const { register, handleSubmit } = useForm();
@@ -23,21 +25,13 @@ const Register = () => {
   console.log(error1);
   const navigate = useNavigate();
   const location = useLocation();
+  // const [user, loadingUser] = useAuthState(auth);
   let from = location.state?.from?.pathname || "/";
 
   const [token] = useToken(user);
 
   useEffect(() => {
-    if (token) {
-      /* axios
-        .post("http://localhost:5000/user", user)
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        }); */
-
+    if (token && user.user.displayName) {
       navigate(from, { replace: true });
     }
   }, [from, navigate, token, updating, user]);
@@ -51,6 +45,29 @@ const Register = () => {
       photoURL:
         "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
     });
+    const currentUser = {
+      email: user.email,
+      displayName: fullName,
+      photoURL:
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    };
+    console.log("current", currentUser);
+    fetch(`http://localhost:5000/user/update/${user?.email}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(currentUser),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          // toast.success("User Information Updated");
+        }
+        return console.log(data);
+      });
+    // console.log(user);
   };
 
   return (
@@ -100,7 +117,7 @@ const Register = () => {
             />
           </div>
 
-          {error ? (
+          {error || error1 ? (
             <p className=" text-sm text-primary">{error?.message}</p>
           ) : (
             ""

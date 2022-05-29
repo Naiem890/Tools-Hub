@@ -15,13 +15,15 @@ const Navbar = () => {
   ];
 
   const [user, loading] = useAuthState(auth);
-  const [userName, setUserName] = useState("");
+  // const [userName, setUserName] = useState("");
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (user) {
       setUserName(user?.displayName?.split(" ")[0]);
     }
-  }, [user, user?.displayName]);
+  }, [user, user?.displayName]); */
+
+  console.log("dekhi", user);
 
   if (loading) {
     return <Loading></Loading>;
@@ -91,7 +93,7 @@ const Navbar = () => {
               <div className="dropdown dropdown-end  ">
                 <div className="flex">
                   <label tabIndex="0" className="btn font-medium btn-ghost">
-                    <p className="font-semibold">{userName}</p>
+                    <p className="font-semibold">Dashbord</p>
                     <svg
                       className="fill-current translate-x-2"
                       xmlns="http://www.w3.org/2000/svg"
@@ -114,14 +116,14 @@ const Navbar = () => {
                   tabIndex="0"
                   className="menu menu-compact gap-2 dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
                 >
-                  {/* <li>
-                    <Link to="/profile" className="justify-between">
-                      Profile
-                      <span className="badge">New</span>
-                    </Link>
-                  </li> */}
                   <li>
-                    <Link to="/dashboard">Dashboard</Link>
+                    <Link to="/dashboard">My Order</Link>
+                  </li>
+                  <li>
+                    <Link to="/dashboard/add-review">Add Review</Link>
+                  </li>
+                  <li>
+                    <Link to="/dashboard/profile">My Profile</Link>
                   </li>
                   <li>
                     <button
