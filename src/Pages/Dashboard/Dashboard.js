@@ -36,9 +36,14 @@ const Dashboard = () => {
             <Link to="/dashboard/profile">My Profile</Link>
           </li>
           {isAdmin && (
-            <li className="border bg-slate-100">
-              <Link to="/dashboard/make-admin">Make Admin</Link>
-            </li>
+            <>
+              <li className="border bg-slate-100">
+                <Link to="/dashboard/make-admin">Make Admin</Link>
+              </li>
+              <li className="border bg-slate-100">
+                <Link to="/dashboard/all-products">All Products</Link>
+              </li>
+            </>
           )}
         </ul>
       </div>
