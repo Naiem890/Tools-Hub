@@ -43,6 +43,9 @@ const Dashboard = () => {
               <li className="border bg-slate-100">
                 <Link to="/dashboard/all-products">All Products</Link>
               </li>
+              <li className="border bg-slate-100">
+                <Link to="/dashboard/add-product">Add Products</Link>
+              </li>
             </>
           )}
         </ul>
