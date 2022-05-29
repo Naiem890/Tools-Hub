@@ -7,7 +7,7 @@ const Blogs = () => {
       <div className="shadow-sm bg-white rounded-lg border p-4 mb-8">
         <h2 className="mb-4 text-xl font-semibold text-slate-500">
           <span className="text-primary  mr-3">Question:</span>
-          Difference between javascript and nodejs?
+          How will you improve the performance of a React Application?
         </h2>
         <p className="text-gray-500">
           <span className="font-bold mr-3">Ans:</span>

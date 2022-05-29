@@ -107,7 +107,7 @@ const Profile = () => {
       <div className="shadow bg-white p-5">
         <h2 className="text-xl font-medium ">Profile Information</h2>
         <form action="" className="mt-4" onSubmit={handleSubmit(handleUpdate)}>
-          <div className="flex items-center gap-5 flex-wrap justify-between">
+          <div className="flex items-center gap-5 flex-wrap ">
             <div className="flex gap-5 items-center mx-5 flex-wrap">
               <div class="avatar ">
                 <div class="w-24 rounded-full ">
@@ -120,7 +120,7 @@ const Profile = () => {
               </div>
             </div>
             {/* <input type="file" {...register("profileImage")} /> */}
-            <div class="flex justify-center items-center  px-4">
+            <div class="flex  justify-center items-center  px-4">
               <label
                 for="dropzone-file"
                 class="flex flex-col justify-center items-center w-full  bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer  hover:bg-gray-100 "

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import Loading from "../Shared/Loading";
 import axios from "axios";
@@ -7,10 +7,13 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { signOut } from "firebase/auth";
 import { Navigate, useLocation } from "react-router-dom";
+import DeleteOrderModal from "./DeleteOrderModal";
 
 const MyOrders = () => {
   const [user, loading] = useAuthState(auth);
   const location = useLocation();
+  const [deleteOrder, setDeleteOrder] = useState(true);
+
   const {
     isLoading,
     error,
@@ -50,23 +53,17 @@ const MyOrders = () => {
   }
 
   const handleDelete = async (id) => {
-    const confirm = window.confirm(
-      "Are you sure you want to delete this order?"
-    );
-
-    if (confirm) {
-      await axios
-        .delete(`http://localhost:5000/order/${id}`)
-        .then(async (res) => {
-          if (res.data.acknowledged) {
-            toast.success(`order ID: ${id} deleted`);
-          }
-          refetch();
-          // refetch();
-          return console.log(res.data);
-        })
-        .catch((error) => console.error(error));
-    }
+    await axios
+      .delete(`http://localhost:5000/order/${id}`)
+      .then(async (res) => {
+        if (res.data.acknowledged) {
+          toast.success(`order ID: ${id} deleted`);
+        }
+        refetch();
+        // refetch();
+        return console.log(res.data);
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -96,19 +93,28 @@ const MyOrders = () => {
                   <td>{order?.totalBill}</td>
                   <td></td>
                   <td
-                    onClick={() => handleDelete(order?._id)}
+                    onClick={() => setDeleteOrder(order)}
                     className="text-center"
                   >
-                    <button className="btn btn-outline btn-primary border-none btn-xs  bg-red-50 text-primary hover:text-white">
+                    <label
+                      for="delete-order-modal"
+                      className="btn btn-outline btn-primary border-none btn-xs  bg-red-50 text-primary hover:text-white"
+                    >
                       {/* <TrashIcon className="h-5 w-5 "></TrashIcon> */}
                       cancel
-                    </button>
+                    </label>
                   </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
+        {deleteOrder && (
+          <DeleteOrderModal
+            deleteOrder={deleteOrder}
+            handleDelete={handleDelete}
+          ></DeleteOrderModal>
+        )}
       </div>
     </div>
   );
