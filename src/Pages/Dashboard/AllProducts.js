@@ -22,7 +22,7 @@ const AllProducts = () => {
   } = useQuery(
     "toolsData",
     async () =>
-      await fetch(`http://localhost:5000/tools`, {
+      await fetch(`https://morning-sands-54796.herokuapp.com/tools`, {
         method: "GET",
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -49,7 +49,7 @@ const AllProducts = () => {
 
   const handleProductDelete = async (id) => {
     await axios
-      .delete(`http://localhost:5000/tool/${id}`)
+      .delete(`https://morning-sands-54796.herokuapp.com/tool/${id}`)
       .then(async (res) => {
         if (res.data.deletedCount) {
           toast.success(`Tools: ${id} deleted`);

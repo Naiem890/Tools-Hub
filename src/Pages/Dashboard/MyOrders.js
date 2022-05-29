@@ -22,12 +22,15 @@ const MyOrders = () => {
   } = useQuery(
     "orderData",
     async () =>
-      await fetch(`http://localhost:5000/orders/${user?.email}`, {
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }).then(
+      await fetch(
+        `https://morning-sands-54796.herokuapp.com/orders/${user?.email}`,
+        {
+          method: "GET",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      ).then(
         (res) => {
           if (res.status === 401 || res.status === 403) {
             signOut(auth);
@@ -54,7 +57,7 @@ const MyOrders = () => {
 
   const handleDelete = async (id) => {
     await axios
-      .delete(`http://localhost:5000/order/${id}`)
+      .delete(`https://morning-sands-54796.herokuapp.com/order/${id}`)
       .then(async (res) => {
         if (res.data.acknowledged) {
           toast.success(`order ID: ${id} deleted`);

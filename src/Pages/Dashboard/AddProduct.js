@@ -32,7 +32,9 @@ const AddProduct = () => {
           updatedInfo.imageLink = res.data.data.url;
           console.log(updatedInfo);
           axios
-            .post("http://localhost:5000/tool", { updatedInfo })
+            .post("https://morning-sands-54796.herokuapp.com/tool", {
+              updatedInfo,
+            })
             .then((res) => {
               if (res.data.insertedId) {
                 toast.success("Tool Added Successfully");

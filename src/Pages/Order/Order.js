@@ -15,7 +15,9 @@ const Order = () => {
     error,
     data: tool,
   } = useQuery("tool", () =>
-    fetch(`http://localhost:5000/tool/${productId}`).then((res) => res.json())
+    fetch(`https://morning-sands-54796.herokuapp.com/tool/${productId}`).then(
+      (res) => res.json()
+    )
   );
 
   const [user] = useAuthState(auth);
@@ -39,7 +41,7 @@ const Order = () => {
       totalBill: data.orderQuantity * tool.price,
     };
     axios
-      .post("http://localhost:5000/order", { order })
+      .post("https://morning-sands-54796.herokuapp.com/order", { order })
       .then((res) => {
         if (res.data.acknowledged) {
           toast.success(

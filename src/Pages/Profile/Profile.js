@@ -16,7 +16,7 @@ const Profile = () => {
   const [defaultValue, setDefaultValue] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${user.email}`, {
+    fetch(`https://morning-sands-54796.herokuapp.com/user/${user.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
@@ -84,14 +84,17 @@ const Profile = () => {
     console.log(defaultValue);
     delete updatedInfo.profileImage;
 
-    fetch(`http://localhost:5000/user/update/${user?.email}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(updatedInfo),
-    })
+    fetch(
+      `https://morning-sands-54796.herokuapp.com/user/update/${user?.email}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify(updatedInfo),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
