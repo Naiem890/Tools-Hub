@@ -114,12 +114,12 @@ const Navbar = () => {
                   tabIndex="0"
                   className="menu menu-compact gap-2 dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
                 >
-                  <li>
+                  {/* <li>
                     <Link to="/profile" className="justify-between">
                       Profile
                       <span className="badge">New</span>
                     </Link>
-                  </li>
+                  </li> */}
                   <li>
                     <Link to="/dashboard">Dashboard</Link>
                   </li>

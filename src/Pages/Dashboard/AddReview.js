@@ -44,9 +44,12 @@ const AddReview = () => {
 
   // console.log(user);
   return (
-    <div>
+    <div className=" sm:mr-20">
       <h3 className="text-xl mt-4">Please add your valuable feedback here</h3>
-      <form className="mt-6 sm:max-w-xs" onSubmit={handleSubmit(handleReview)}>
+      <form
+        className="mt-6 md:grid md:grid-cols-2 gap-x-8"
+        onSubmit={handleSubmit(handleReview)}
+      >
         <div class="form-control w-full ">
           <label class="label">
             <span class="label-text">Your Name</span>
@@ -54,7 +57,8 @@ const AddReview = () => {
           <input
             type="text"
             placeholder="Type here"
-            defaultValue={user?.displayName}
+            value={user?.displayName}
+            disabled
             {...register("reviewerName")}
             class="input input-bordered w-full "
           />
@@ -66,12 +70,13 @@ const AddReview = () => {
           <input
             type="text"
             placeholder="Type here"
-            defaultValue={user?.email}
+            value={user?.email}
+            disabled
             {...register("reviewerEmail")}
             class="input input-bordered w-full "
           />
         </div>
-        <div class="form-control w-full ">
+        <div class="form-control w-full col-span-2">
           <label class="label">
             <span class="label-text">Your Review</span>
           </label>
@@ -100,7 +105,7 @@ const AddReview = () => {
         </div>
         <button
           type="submit"
-          className="btn btn-outline btn-success mt-4 ml-auto block"
+          className="btn text-white btn-success self-end col-span-2 mr-auto mt-6 block"
         >
           Submit Review
         </button>

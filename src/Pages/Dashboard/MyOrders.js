@@ -5,10 +5,12 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import { signOut } from "firebase/auth";
+import { Navigate, useLocation } from "react-router-dom";
 
 const MyOrders = () => {
   const [user, loading] = useAuthState(auth);
-
+  const location = useLocation();
   const {
     isLoading,
     error,
@@ -22,9 +24,19 @@ const MyOrders = () => {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
-      }).then((res) => res.json(), {
-        enabled: false,
-      })
+      }).then(
+        (res) => {
+          if (res.status === 401 || res.status === 403) {
+            signOut(auth);
+            localStorage.removeItem("accessToken");
+            Navigate("/");
+          }
+          return res.json();
+        },
+        {
+          enabled: false,
+        }
+      )
   );
 
   useEffect(() => {
@@ -33,7 +45,9 @@ const MyOrders = () => {
 
   if (isLoading || loading) return <Loading></Loading>;
 
-  if (error) return "An error has occurred: " + error.message;
+  if (error) {
+    return "An error has occurred: " + error.message;
+  }
 
   const handleDelete = async (id) => {
     const confirm = window.confirm(
@@ -73,7 +87,7 @@ const MyOrders = () => {
           <tbody>
             {orders?.map((order, i) => {
               return (
-                <tr className="h-14" key={order._id}>
+                <tr className="h-14" key={order?._id}>
                   <th className="text-center">{i + 1}</th>
                   <td>{order?.userName}</td>
                   <td>{order?.tool?.toolName}</td>
