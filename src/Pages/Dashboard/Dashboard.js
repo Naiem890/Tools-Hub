@@ -9,9 +9,9 @@ import Loading from "../Shared/Loading";
 
 const Dashboard = () => {
   const [user, isLoading] = useAuthState(auth);
-  const [isAdmin] = useAdminStat(user);
+  const [isAdmin, adminLoading] = useAdminStat(user);
   console.log(isAdmin);
-  if (isLoading) {
+  if (isLoading || adminLoading) {
     return <Loading></Loading>;
   }
   return (

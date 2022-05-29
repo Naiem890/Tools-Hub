@@ -19,6 +19,7 @@ import { CogIcon } from "@heroicons/react/outline";
 import MyOrders from "./Pages/Dashboard/MyOrders";
 import AddReview from "./Pages/Dashboard/AddReview";
 import AllUsers from "./Pages/Dashboard/AllUsers";
+import RequireAdmin from "./Pages/Login/RequiredAdmin";
 
 function App() {
   return (
@@ -58,7 +59,14 @@ function App() {
           <Route index element={<MyOrders></MyOrders>}></Route>
           <Route path="profile" element={<Profile></Profile>}></Route>
           <Route path="add-review" element={<AddReview></AddReview>}></Route>
-          <Route path="make-admin" element={<AllUsers></AllUsers>}></Route>
+          <Route
+            path="make-admin"
+            element={
+              <RequireAdmin>
+                <AllUsers></AllUsers>
+              </RequireAdmin>
+            }
+          ></Route>
         </Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>

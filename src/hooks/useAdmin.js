@@ -16,12 +16,13 @@ const useAdmin = (user) => {
       })
         .then((res) => {
           setIsAdmin(res.data);
+          setAdminLoading(false);
           return console.log(res.data);
         })
         .catch((error) => console.error(error));
     }
   }, [user?.user?.email, user]);
 
-  return [isAdmin];
+  return [isAdmin, adminLoading];
 };
 export default useAdmin;
