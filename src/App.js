@@ -58,7 +58,7 @@ function App() {
           <Route index element={<MyOrders></MyOrders>}></Route>
           <Route path="profile" element={<Profile></Profile>}></Route>
           <Route path="add-review" element={<AddReview></AddReview>}></Route>
-          <Route path="all-users" element={<AllUsers></AllUsers>}></Route>
+          <Route path="make-admin" element={<AllUsers></AllUsers>}></Route>
         </Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>

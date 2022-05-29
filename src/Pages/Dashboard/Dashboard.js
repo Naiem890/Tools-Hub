@@ -1,9 +1,19 @@
 import { TemplateIcon } from "@heroicons/react/outline";
 import { CogIcon } from "@heroicons/react/solid";
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import auth from "../../firebase.init";
+import useAdminStat from "../../hooks/useAdmin";
+import Loading from "../Shared/Loading";
 
 const Dashboard = () => {
+  const [user, isLoading] = useAuthState(auth);
+  const [isAdmin] = useAdminStat(user);
+  console.log(isAdmin);
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   return (
     <div class="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
@@ -25,9 +35,11 @@ const Dashboard = () => {
           <li className="border bg-slate-100">
             <Link to="/dashboard/profile">My Profile</Link>
           </li>
-          <li className="border bg-slate-100">
-            <Link to="/dashboard/all-users">All User</Link>
-          </li>
+          {isAdmin && (
+            <li className="border bg-slate-100">
+              <Link to="/dashboard/make-admin">Make Admin</Link>
+            </li>
+          )}
         </ul>
       </div>
     </div>

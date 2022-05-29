@@ -23,7 +23,12 @@ const useToken = (user) => {
         })
         .then((error) => console.error(error));
     }
-  }, [user?.displayName, user?.user?.email]);
+  }, [
+    user?.displayName,
+    user?.user?.displayName,
+    user?.user?.email,
+    user?.user?.photoURL,
+  ]);
 
   return [token];
 };

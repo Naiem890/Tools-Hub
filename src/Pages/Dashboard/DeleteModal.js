@@ -1,16 +1,16 @@
 import React from "react";
 
-const Modal = ({ deleteUser, handleDelete }) => {
+const DeleteModal = ({ deleteUser, handleDelete }) => {
   console.log(deleteUser);
   return (
     <div>
       {/* Modal Here */}
 
-      <input type="checkbox" id="my-modal" class="modal-toggle" />
-      <label for="my-modal" class="modal cursor-pointer">
+      <input type="checkbox" id="delete-modal" class="modal-toggle" />
+      <label for="delete-modal" class="modal cursor-pointer">
         <label class="modal-box relative" for="">
           <label
-            for="my-modal"
+            for="delete-modal"
             class="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
@@ -31,18 +31,17 @@ const Modal = ({ deleteUser, handleDelete }) => {
           </div>
           <div class="modal-action">
             <label
-              for="my-modal"
-              // onClick={() =>}
-              class="btn btn-outline "
-            >
-              Close
-            </label>
-            <label
-              for="my-modal"
               onClick={() => handleDelete(deleteUser.email)}
               class="btn btn-primary text-white"
             >
               Confirm
+            </label>
+            <label
+              for="delete-modal"
+              // onClick={() =>}
+              class="btn btn-outline "
+            >
+              Close
             </label>
           </div>
         </label>
@@ -53,4 +52,4 @@ const Modal = ({ deleteUser, handleDelete }) => {
   );
 };
 
-export default Modal;
+export default DeleteModal;
