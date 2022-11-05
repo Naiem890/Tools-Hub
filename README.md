@@ -10,7 +10,16 @@ Getting Started
   npm install
   npm start
 ```
-
+Copy this codes and paste into .env.local file
+```
+  REACT_APP_APIKEY=AIzaSyCXF-dnTkegerKWIE1uRL3WcFve-k6tTDI
+  REACT_APP_AUTHDOMAIN=tools-hub-e018a.firebaseapp.com
+  REACT_APP_PROJECTID=tools-hub-e018a
+  REACT_APP_STORAGEBUCKET=tools-hub-e018a.appspot.com
+  REACT_APP_MESSAGINGSENDERID=779779962927
+  REACT_APP_APPID=1:779779962927:web:9cd3dfe4907f913ca32eda
+  REACT_APP_IMAGEBBAPI=bba61ff1330c6a8dcadf3ed738b89a04
+```
 ## [Live Link](https://tools-hub-e018a.web.app/)
 
 ##### [https://tools-hub-e018a.web.app/](https://tools-hub-e018a.web.app/)

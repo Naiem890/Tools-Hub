@@ -11,6 +11,7 @@ const Navbar = () => {
   const navLinks = [
     { linkText: "Home", linkRoute: "/" },
     { linkText: "Blogs", linkRoute: "/blogs" },
+    { linkText: "About Us", linkRoute: "/about-us" },
     { linkText: "Portfolio", linkRoute: "/portfolio" },
   ];
 
