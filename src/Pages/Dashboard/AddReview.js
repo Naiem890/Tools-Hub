@@ -24,7 +24,10 @@ const AddReview = () => {
   }
 
   const handleReview = (data) => {
-    // console.log(data);
+    if(!data.reviewerEmail || !data.reviewerName){
+      data.reviewerEmail = user.email;
+      data.reviewerName = user.displayName;
+    }
     const review = data;
 
     review.reviewerImage = user.photoURL;
