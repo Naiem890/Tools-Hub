@@ -9,9 +9,7 @@ const Reviews = () => {
     error,
     data: reviews,
   } = useQuery("repoData", () =>
-    fetch("https://morning-sands-54796.herokuapp.com/reviews").then((res) =>
-      res.json()
-    )
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/reviews`).then((res) => res.json())
   );
 
   if (isLoading) return <Loading></Loading>;

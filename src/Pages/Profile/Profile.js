@@ -16,7 +16,7 @@ const Profile = () => {
   const [defaultValue, setDefaultValue] = useState([]);
 
   useEffect(() => {
-    fetch(`https://morning-sands-54796.herokuapp.com/user/${user.email}`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${user.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
@@ -85,7 +85,7 @@ const Profile = () => {
     delete updatedInfo.profileImage;
 
     fetch(
-      `https://morning-sands-54796.herokuapp.com/user/update/${user?.email}`,
+      `${process.env.REACT_APP_BACKEND_URL}/user/update/${user?.email}`,
       {
         method: "PUT",
         headers: {

@@ -94,7 +94,7 @@ const Navbar = () => {
               <div className="dropdown dropdown-end  ">
                 <div className="flex">
                   <label tabIndex="0" className="btn font-medium btn-ghost">
-                    <p className="font-semibold">Dashbord</p>
+                    <p className="font-semibold">Dashboard</p>
                     <svg
                       className="fill-current translate-x-2"
                       xmlns="http://www.w3.org/2000/svg"

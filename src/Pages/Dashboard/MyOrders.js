@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { signOut } from "firebase/auth";
-import { Navigate, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import DeleteOrderModal from "./DeleteOrderModal";
 
 const MyOrders = () => {
@@ -22,15 +22,12 @@ const MyOrders = () => {
   } = useQuery(
     "orderData",
     async () =>
-      await fetch(
-        `https://morning-sands-54796.herokuapp.com/orders/${user?.email}`,
-        {
-          method: "GET",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
-      ).then(
+      await fetch(`${process.env.REACT_APP_BACKEND_URL}/orders/${user?.email}`, {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }).then(
         (res) => {
           if (res.status === 401 || res.status === 403) {
             signOut(auth);
@@ -57,7 +54,7 @@ const MyOrders = () => {
 
   const handleDelete = async (id) => {
     await axios
-      .delete(`https://morning-sands-54796.herokuapp.com/order/${id}`)
+      .delete(`${process.env.REACT_APP_BACKEND_URL}/order/${id}`)
       .then(async (res) => {
         if (res.data.acknowledged) {
           toast.success(`order ID: ${id} deleted`);
@@ -94,7 +91,21 @@ const MyOrders = () => {
                   <td>{order?.tool?.toolName}</td>
                   <td>{order?.orderQuantity}</td>
                   <td>{order?.totalBill}</td>
-                  <td></td>
+                  <td>
+                    {order?.totalBill && !order?.isPaid && (
+                      <Link
+                        to={`/dashboard/payment/${order._id}`}
+                        className="btn border-none btn-xs bg-green-50 text-black hover:bg-white"
+                      >
+                        Pay Now
+                      </Link>
+                    )}
+                    {order?.totalBill && order?.isPaid && (
+                      <span className="text-green-500 hover:bg-white">
+                        Paid
+                      </span>
+                    )}
+                  </td>
                   <td
                     onClick={() => setDeleteOrder(order)}
                     className="text-center"

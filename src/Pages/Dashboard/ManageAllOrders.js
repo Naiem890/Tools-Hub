@@ -22,7 +22,7 @@ const ManageAllOrders = () => {
   } = useQuery(
     "orderData",
     async () =>
-      await fetch(`https://morning-sands-54796.herokuapp.com/orders/`, {
+      await fetch(`${process.env.REACT_APP_BACKEND_URL}/orders/`, {
         method: "GET",
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -54,7 +54,7 @@ const ManageAllOrders = () => {
 
   const handleDelete = async (id) => {
     await axios
-      .delete(`https://morning-sands-54796.herokuapp.com/order/${id}`)
+      .delete(`${process.env.REACT_APP_BACKEND_URL}/order/${id}`)
       .then(async (res) => {
         if (res.data.acknowledged) {
           toast.success(`order ID: ${id} deleted`);

@@ -32,7 +32,7 @@ const AddProduct = () => {
           updatedInfo.imageLink = res.data.data.url;
           console.log(updatedInfo);
           axios
-            .post("https://morning-sands-54796.herokuapp.com/tool", {
+            .post(`${process.env.REACT_APP_BACKEND_URL}/tool`, {
               updatedInfo,
             })
             .then((res) => {

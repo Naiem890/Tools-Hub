@@ -15,9 +15,7 @@ const Order = () => {
     error,
     data: tool,
   } = useQuery("tool", () =>
-    fetch(`https://morning-sands-54796.herokuapp.com/tool/${productId}`).then(
-      (res) => res.json()
-    )
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/tool/${productId}`).then((res) => res.json())
   );
 
   const [user] = useAuthState(auth);
@@ -39,9 +37,10 @@ const Order = () => {
       orderQuantity: data.orderQuantity,
       orderAddress: data.orderAddress,
       totalBill: data.orderQuantity * tool.price,
+      isPaid: false,
     };
     axios
-      .post("https://morning-sands-54796.herokuapp.com/order", { order })
+      .post(`${process.env.REACT_APP_BACKEND_URL}/order`, { order })
       .then((res) => {
         if (res.data.acknowledged) {
           toast.success(

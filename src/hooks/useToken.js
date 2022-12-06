@@ -15,7 +15,7 @@ const useToken = (user) => {
     console.log(email, currentUser);
     if (email) {
       axios
-        .put(`https://morning-sands-54796.herokuapp.com/user/${email}`, {
+        .put(`${process.env.REACT_APP_BACKEND_URL}/user/${email}`, {
           currentUser,
         })
         .then((res) => {

@@ -32,7 +32,7 @@ const AddReview = () => {
     console.log(review);
 
     axios
-      .post("https://morning-sands-54796.herokuapp.com/review", { review })
+      .post(`${process.env.REACT_APP_BACKEND_URL}/review`, { review })
       .then((res) => {
         if (res.data.acknowledged) {
           toast.success("Review Added Successfully");

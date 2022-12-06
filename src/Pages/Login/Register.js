@@ -52,17 +52,14 @@ const Register = () => {
         "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
     };
     console.log("current", currentUser);
-    fetch(
-      `https://morning-sands-54796.herokuapp.com/user/update/${user?.email}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-        body: JSON.stringify(currentUser),
-      }
-    )
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/user/update/${user?.email}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(currentUser),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {

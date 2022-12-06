@@ -9,7 +9,7 @@ const useAdmin = (user) => {
     // console.log("email", email);
 
     if (email) {
-      axios(`https://morning-sands-54796.herokuapp.com/admin/${email}`, {
+      axios(`${process.env.REACT_APP_BACKEND_URL}/admin/${email}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },

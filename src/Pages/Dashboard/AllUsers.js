@@ -24,7 +24,7 @@ const AllUsers = () => {
   } = useQuery(
     "userData",
     async () =>
-      await fetch(`https://morning-sands-54796.herokuapp.com/users`, {
+      await fetch(`${process.env.REACT_APP_BACKEND_URL}/users`, {
         method: "GET",
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -51,15 +51,12 @@ const AllUsers = () => {
 
   const handleAdmin = async (email) => {
     console.log(email);
-    await fetch(
-      `https://morning-sands-54796.herokuapp.com/user/admin/${email}`,
-      {
-        method: "PUT",
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }
-    )
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/admin/${email}`, {
+      method: "PUT",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => {
         return res.json();
       })
@@ -76,7 +73,7 @@ const AllUsers = () => {
 
   const handleDelete = async (email) => {
     await axios
-      .delete(`https://morning-sands-54796.herokuapp.com/user/${email}`)
+      .delete(`${process.env.REACT_APP_BACKEND_URL}/user/${email}`)
       .then(async (res) => {
         if (res.data.deletedCount) {
           toast.success(`User: ${email} deleted`);
