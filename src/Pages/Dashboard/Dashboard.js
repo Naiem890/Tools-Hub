@@ -46,6 +46,9 @@ const Dashboard = () => {
                 <Link to="/dashboard/make-admin">Make Admin</Link>
               </li>
               <li className="border bg-slate-100">
+                <Link to="/dashboard/all-orders">All Orders</Link>
+              </li>
+              <li className="border bg-slate-100">
                 <Link to="/dashboard/all-products">All Products</Link>
               </li>
               <li className="border bg-slate-100">

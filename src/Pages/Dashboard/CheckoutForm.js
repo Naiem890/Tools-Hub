@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const CheckoutForm = ({ order }) => {
   const stripe = useStripe();
@@ -88,7 +89,9 @@ const CheckoutForm = ({ order }) => {
         .then((data) => {
           console.log(data);
           if (data.insertedId) {
+            toast.success("Congrats! your payment completed");
             setSuccess("Congrats! your payment completed");
+            setPaymentError("");
             setTransactionId(paymentIntent.id);
           }
         });
@@ -97,31 +100,43 @@ const CheckoutForm = ({ order }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <CardElement
-        options={{
-          style: {
-            base: {
-              fontSize: "16px",
-              color: "#424770",
-              "::placeholder": {
-                color: "#aab7c4",
+    <form onSubmit={handleSubmit} className="mb-14">
+      <div>Enter your payment information here</div>
+      <div className="my-6">
+        <CardElement
+          options={{
+            style: {
+              base: {
+                fontSize: "16px",
+                color: "#424770",
+                "::placeholder": {
+                  color: "#aab7c4",
+                },
+              },
+              invalid: {
+                color: "#9e2146",
               },
             },
-            invalid: {
-              color: "#9e2146",
-            },
-          },
-        }}
-      />
+          }}
+        />
+      </div>
       <button
-        className="btn btn-primary btn-success rounded-sm"
+        className="btn btn-primary btn-success rounded-sm mb-4"
         type="submit"
-        disabled={!stripe || !clientSecret || processing}
+        disabled={!stripe || !clientSecret || processing || order.isPaid}
       >
-        Pay
+        {order.isPaid ? "Already Paid" : "Pay"}
       </button>
       {paymentError && <p className="text-red-500">{paymentError}</p>}
+      {success && (
+        <div>
+          <p className="text-green-500">{success}</p>
+          <p>
+            Your transactionId:{" "}
+            <span className="font-bold">{transactionId}</span>
+          </p>
+        </div>
+      )}
     </form>
   );
 };

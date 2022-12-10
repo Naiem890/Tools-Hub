@@ -22,12 +22,15 @@ const MyOrders = () => {
   } = useQuery(
     "orderData",
     async () =>
-      await fetch(`${process.env.REACT_APP_BACKEND_URL}/orders/${user?.email}`, {
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }).then(
+      await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/orders/${user?.email}`,
+        {
+          method: "GET",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      ).then(
         (res) => {
           if (res.status === 401 || res.status === 403) {
             signOut(auth);
@@ -74,12 +77,12 @@ const MyOrders = () => {
           <thead>
             <tr>
               <th></th>
-              <th>User Name</th>
-              <th>Product Name</th>
+              <th>Order Info</th>
+              <th>Product Info</th>
               <th>Amount</th>
               <th>Bill</th>
               <th>Payment</th>
-              <th>Delete</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -87,10 +90,22 @@ const MyOrders = () => {
               return (
                 <tr className="h-14" key={order?._id}>
                   <th className="text-center">{i + 1}</th>
-                  <td>{order?.userName}</td>
-                  <td>{order?.tool?.toolName}</td>
+                  <td>
+                    <div>{order?.userEmail}</div>
+                    <span className="text-xs">{order?._id}</span>
+                  </td>
+                  <td>
+                    <div className="flex items-center gap-4">
+                      <div class="avatar">
+                        <div class="w-10  rounded-full ">
+                          <img src={order?.tool?.imageLink} alt="" />
+                        </div>
+                      </div>
+                      <div>{order?.tool?.toolName}</div>
+                    </div>
+                  </td>
                   <td>{order?.orderQuantity}</td>
-                  <td>{order?.totalBill}</td>
+                  <td>{order?.totalBill}$</td>
                   <td>
                     {order?.totalBill && !order?.isPaid && (
                       <Link
@@ -114,8 +129,7 @@ const MyOrders = () => {
                       for="delete-order-modal"
                       className="btn btn-outline btn-primary border-none btn-xs  bg-red-50 text-primary hover:text-white"
                     >
-                      {/* <TrashIcon className="h-5 w-5 "></TrashIcon> */}
-                      cancel
+                      Delete
                     </label>
                   </td>
                 </tr>

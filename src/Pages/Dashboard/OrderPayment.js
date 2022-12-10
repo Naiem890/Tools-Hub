@@ -6,9 +6,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
 
-const stripePromise = loadStripe(
-  "pk_test_51MBDH3JpssBhTbZMBUKpxfMhPcrkYR6c2U6JkPzuIRWBVl32BJdfjXXbDwDxbyuRcyhvjvcXrNt1QKb3WBXqjuu900mPH0DWa7"
-);
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
 const OrderPayment = () => {
   const { id } = useParams();
@@ -33,17 +31,47 @@ const OrderPayment = () => {
 
   return (
     <div>
-      <div>Order payment for {order.tool.toolName}</div>
-      <div>Order payment for {order.totalBill}</div>
-      {/* {!order.isPaid && (
-        <button className="btn btn-outline btn-success border-none  bg-green-50 text-primary hover:text-white">
-          Pay now
-        </button>
-      )} */}
-      <div>
-        <Elements stripe={stripePromise}>
-          <CheckoutForm order={order} />
-        </Elements>
+      <div className="grid md:grid-cols-2 gap-3 md:mr-11">
+        <div className="max-w-md">
+          <figure>
+            <img
+              src={order.tool.imageLink}
+              alt={order.tool.toolName}
+              className="w-full"
+            />
+            <figcaption className="text-sm mt-6 text-gray-400">
+              Fig: {order.tool.toolName}
+            </figcaption>
+          </figure>
+        </div>
+        <div>
+          <div className="mt-8 gap-6 grid grid-cols-2">
+            <div>
+              <div className="w-40">Order Name: </div>
+              <span className="text-gray-500">{order.tool.toolName}</span>
+            </div>
+            <div>
+              <div className="w-28">Amount: </div>
+              <span className="text-gray-500">
+                {order.totalBill / order.tool.price}
+              </span>
+            </div>
+            <div>
+              <div className="w-28">Order Price: </div>
+              <span className="text-gray-500">{order.totalBill}$</span>
+            </div>
+            <div>
+              <div className="w-28">Payment:</div>
+              <span className="text-gray-500">
+                {order.isPaid ? "Paid" : "Not Paid"}
+              </span>
+            </div>
+          </div>
+          <div className="border-b-2 my-5 border-gray-300"></div>
+          <Elements stripe={stripePromise}>
+            <CheckoutForm order={order} />
+          </Elements>
+        </div>
       </div>
     </div>
   );

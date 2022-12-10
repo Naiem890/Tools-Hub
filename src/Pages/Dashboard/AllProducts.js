@@ -79,12 +79,6 @@ const AllProducts = () => {
                 <th className="text-center">Action</th>
               </tr>
             </thead>
-            {/*  _id: "628ed640e02859ce7e88fab5" ​ available: 400 ​ imageLink:
-            "https://i.ibb.co/M1NcgvH/hammer.png" ​ minOrder: 200 ​ price: 100 ​
-            toolDescription: "Machinist hammers feature a square beveled face
-            and angular cross peen. The distance between the face and the center
-            of the eye make this one a greater starter hammer. It is easier to
-            balance and control when using the edges and peen." ​ toolName: */}
             <tbody>
               {tools?.map((tool, i) => {
                 console.log(tool);
